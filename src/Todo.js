@@ -1,41 +1,41 @@
-import React from "react";
-import TodoList from "./TodoList";
-import { useStore } from "./store";
-import { setTodo, addTodo, deleteTodo, changeTodo } from "~/store";
+import React from 'react'
+import TodoList from './TodoList'
+import { useStore } from './store'
+import { setTodo, addTodo, deleteTodo, changeTodo } from '~/store'
 
 function Todo() {
-  const [state, dispatch] = useStore();
+  const [state, dispatch] = useStore()
 
   const handleAdd = () => {
-    dispatch(addTodo(state.todo));
-    dispatch(setTodo(""));
-  };
+    dispatch(addTodo(state.todo))
+    dispatch(setTodo(''))
+  }
 
   const handleDelete = (id) => {
-    dispatch(deleteTodo(id));
-  };
+    dispatch(deleteTodo(id))
+  }
 
   const handleChange = (id, value) => {
     const payload = {
       id,
       value,
-    };
-    dispatch(changeTodo(payload));
-  };
+    }
+    dispatch(changeTodo(payload))
+  }
 
   return (
     <>
       <div>
-        <label htmlFor="todo">Enter: </label>
+        <label htmlFor='todo'>Enter: </label>
         <input
           value={state.todo}
           onChange={(e) => dispatch(setTodo(e.target.value))}
           onKeyDown={(e) => {
-            if (e.key === "Enter") handleAdd();
+            if (e.key === 'Enter') handleAdd()
           }}
-          style={{ weight: "80px" }}
-          name="todo"
-          id="todo"
+          style={{ weight: '80px' }}
+          name='todo'
+          id='todo'
         />
         <button onClick={handleAdd}>Add</button>
         <TodoList
@@ -45,7 +45,7 @@ function Todo() {
         />
       </div>
     </>
-  );
+  )
 }
 
-export default Todo;
+export default Todo
