@@ -3,21 +3,21 @@ const initState = {
   todos: [
     {
       id: 1,
-      name: 'todo 1',
+      title: 'todo 1',
       completed: false,
       createAt: '',
       type: [],
     },
     {
       id: 2,
-      name: 'todo 2',
+      title: 'todo 2',
       completed: false,
       createAt: '',
       type: [],
     },
     {
       id: 3,
-      name: 'todo 3',
+      title: 'todo 3',
       completed: false,
       createAt: '',
       type: [],

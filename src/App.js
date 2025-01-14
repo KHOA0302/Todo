@@ -10,37 +10,52 @@ import {
   Navigate,
 } from 'react-router-dom'
 import NavBar from './components/NavBar'
+import MyDay from './Page/MyDay'
+import TodoSetting from './Page/TodoSetting/inde'
 
 const cx = classNames.bind(styles)
 
 function App() {
-  const todoList = useSelector(todosSelector)
-
   return (
-    <Router>
-      <div className={cx('wrapper', 'wide')}>
-        <div className={cx('nav-bar')}>
-          <NavBar />
-        </div>
+    <div className={cx('wrapper', 'wide')}>
+      <div className={cx('nav-bar')}>
+        <NavBar />
+      </div>
 
-        <div className={cx('todo-list')}>
+      <div className={cx('todo-list')}>
+        <Router>
           <Routes>
-            <Route exact path='/' element={<Navigate to='/my-day' />} />
-            <Route exact path='/my-day' element={<button>My Day</button>} />
+            <Route exact path='/' element={<Navigate to='/todos' />} />
             <Route
               exact
-              path='/important'
+              path='/todos'
+              element={<Navigate to='/todos/my-day' />}
+            />
+
+            <Route path='/todos/my-day' element={<MyDay />} />
+            <Route
+              exact
+              path='/todos/important'
               element={<button>Important</button>}
             />
-            <Route exact path='/task' element={<button>Task</button>} />
+            <Route
+              exact
+              path='/todos/planned'
+              element={<button>Planned</button>}
+            />
+            <Route exact path='/todos/task' element={<button>Task</button>} />
           </Routes>
-        </div>
-
-        <div className={cx('todo-setting')}>
-          <h1>Todo Setting</h1>
-        </div>
+        </Router>
       </div>
-    </Router>
+
+      <div className={cx('todo-setting')}>
+        <Router>
+          <Routes>
+            <Route path='/todos/id/:id' element={<TodoSetting />} />
+          </Routes>
+        </Router>
+      </div>
+    </div>
   )
 }
 

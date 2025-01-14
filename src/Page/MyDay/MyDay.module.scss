@@ -1,0 +1,60 @@
+.wrapper {
+  margin: 0 12px;
+  margin-top: 20px;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+  svg {
+    font-size: 1.6rem;
+  }
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  span {
+    font-size: 0.8rem;
+    color: rgb(100, 100, 100);
+  }
+}
+
+.add-todo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 30px;
+  background-color: var(--primary-background-todo);
+  border-radius: 8px;
+  overflow: hidden;
+
+  input {
+    flex: 1;
+    padding: 12px 0;
+    padding-right: 8px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1rem;
+  }
+
+  svg {
+    font-size: 1.4rem;
+    margin: 0 12px;
+    path {
+      color: var(--primary-color);
+    }
+  }
+}

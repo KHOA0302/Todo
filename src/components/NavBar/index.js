@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './NavBar.module.scss'
 import Search from '../Search'
-import { RiSunLine } from 'react-icons/ri'
-import { RxStar } from 'react-icons/rx'
 import { GoHome } from 'react-icons/go'
-import { HiOutlineCalendarDays } from 'react-icons/hi2'
+import { RxHamburgerMenu } from 'react-icons/rx'
+import { ImportantIcon, MyDayIcon, PlannedIcon, TaskIcon } from '~/Icons'
 
 const cx = classNames.bind(styles)
 
@@ -15,32 +14,38 @@ function NavBar() {
 
   return (
     <div className={cx('wrapper')}>
-      <h1 className={cx('title')}>Menu</h1>
+      <div className={cx('title')}>
+        <h1>Menu</h1>
+        <RxHamburgerMenu />
+      </div>
       <Search />
       <nav className={cx('nav-bar')}>
         <NavLink
-          to='/my-day'
+          to='/todos/my-day'
           className={({ isActive }) => cx('link', { active: isActive })}
         >
-          <RiSunLine />
+          <MyDayIcon />
           <span>My day</span>
         </NavLink>
         <NavLink
-          to='/important'
+          to='/todos/important'
           className={({ isActive }) => cx('link', { active: isActive })}
         >
-          <RxStar />
+          <ImportantIcon />
           <span>Important</span>
         </NavLink>
-        <NavLink className={({ isActive }) => cx('link', { active: false })}>
-          <HiOutlineCalendarDays />
+        <NavLink
+          to='/todos/planned'
+          className={({ isActive }) => cx('link', { active: isActive })}
+        >
+          <PlannedIcon />
           <span>Planned</span>
         </NavLink>
         <NavLink
-          to='/task'
+          to='/todos/task'
           className={({ isActive }) => cx('link', { active: isActive })}
         >
-          <GoHome />
+          <TaskIcon />
           <span>Task</span>
         </NavLink>
       </nav>

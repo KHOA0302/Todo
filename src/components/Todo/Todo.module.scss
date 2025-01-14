@@ -1,0 +1,50 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(219, 219, 219);
+  margin-bottom: 8px;
+  border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 0 12px;
+}
+
+.flex-groupItem {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.todo-complete {
+  position: relative;
+  display: flex;
+  align-items: center;
+  svg:first-child {
+    font-size: 1.4rem;
+    path {
+      color: var(--primary-color);
+      font-weight: 100;
+    }
+  }
+  svg:last-child {
+    position: absolute;
+    font-size: 0.8rem;
+    transition: opacity 0.3s;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    path {
+      color: var(--primary-color);
+    }
+  }
+
+  &:hover svg:last-child {
+    opacity: 1;
+  }
+}
+
+.todo-title {
+  flex: 1;
+  padding: 12px;
+}

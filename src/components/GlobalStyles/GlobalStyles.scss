@@ -9,12 +9,14 @@
   font-size: 1rem;
   line-height: 1.4;
   color: var(--primary-text);
+  text-decoration: none;
 }
 
 :root {
-  --primary-background: #d6efd8;
+  --primary-background: #d8efd3;
   --primary-text: #222222;
-  --primary-hover: #e5e1da;
+  --primary-hover: #f1f8e8;
   --primary-color: #1a5319;
-  --primary-active: #80af81;
+  --primary-active: #95d2b3;
+  --primary-background-todo: #e3e3e3;
 }
