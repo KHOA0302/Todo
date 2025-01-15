@@ -32,6 +32,14 @@ const rootReducer = (state = initState, action) => {
         todo: '',
         todos: [...state.todos, action.payload],
       }
+    case 'changeCompleted':
+      return {
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload
+            ? { ...todo, completed: !todo.completed }
+            : todo,
+        ),
+      }
     default:
       return state
   }

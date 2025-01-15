@@ -4,7 +4,7 @@
   justify-content: space-between;
   border: 1px solid rgb(219, 219, 219);
   margin-bottom: 8px;
-  border-radius: 8px;
+  border-radius: 4px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 0 12px;
@@ -30,10 +30,27 @@
   svg:last-child {
     position: absolute;
     font-size: 0.8rem;
-    transition: opacity 0.3s;
+
+    transition: opacity 0.1s;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
+    path {
+      color: var(--primary-color);
+    }
+  }
+
+  svg:nth-child(2) {
+    display: none;
+  }
+
+  &.active svg:first-child,
+  &.active svg:last-child {
+    display: none;
+  }
+
+  &.active svg:nth-child(2) {
+    display: block;
     path {
       color: var(--primary-color);
     }
@@ -47,4 +64,8 @@
 .todo-title {
   flex: 1;
   padding: 12px;
+  &.active {
+    color: #bbb;
+    text-decoration: line-through;
+  }
 }

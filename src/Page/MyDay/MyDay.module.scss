@@ -1,4 +1,5 @@
 .wrapper {
+  flex: 1;
   margin: 0 12px;
   margin-top: 20px;
 }
@@ -22,22 +23,13 @@
   }
 }
 
-.time {
-  display: flex;
-  justify-content: space-between;
-  span {
-    font-size: 0.8rem;
-    color: rgb(100, 100, 100);
-  }
-}
-
 .add-todo {
   display: flex;
   align-items: center;
   width: 100%;
   margin-bottom: 30px;
   background-color: var(--primary-background-todo);
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
 
   input {

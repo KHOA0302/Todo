@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './NavBar.module.scss'
 import Search from '../Search'
-import { GoHome } from 'react-icons/go'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { ImportantIcon, MyDayIcon, PlannedIcon, TaskIcon } from '~/Icons'
+import { pages } from '~/Page'
 
 const cx = classNames.bind(styles)
 
 function NavBar() {
-  const [active, setActive] = useState(false)
+  const [pathname, setPathname] = useState('/todos/my-day')
+
+  const handleClick = (pathname) => {
+    setPathname(pathname)
+  }
 
   return (
     <div className={cx('wrapper')}>
@@ -20,34 +24,38 @@ function NavBar() {
       </div>
       <Search />
       <nav className={cx('nav-bar')}>
-        <NavLink
+        <Link
           to='/todos/my-day'
-          className={({ isActive }) => cx('link', { active: isActive })}
+          onClick={() => handleClick('/todos/my-day')}
+          className={cx('link', { active: pathname === '/todos/my-day' })}
         >
           <MyDayIcon />
           <span>My day</span>
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           to='/todos/important'
-          className={({ isActive }) => cx('link', { active: isActive })}
+          onClick={() => handleClick('/todos/important')}
+          className={cx('link', { active: pathname === '/todos/important' })}
         >
           <ImportantIcon />
           <span>Important</span>
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           to='/todos/planned'
-          className={({ isActive }) => cx('link', { active: isActive })}
+          onClick={() => handleClick('/todos/planned')}
+          className={cx('link', { active: pathname === '/todos/planned' })}
         >
           <PlannedIcon />
           <span>Planned</span>
-        </NavLink>
-        <NavLink
+        </Link>
+        <Link
           to='/todos/task'
-          className={({ isActive }) => cx('link', { active: isActive })}
+          onClick={() => handleClick('/todos/task')}
+          className={cx('link', { active: pathname === '/todos/task' })}
         >
           <TaskIcon />
           <span>Task</span>
-        </NavLink>
+        </Link>
       </nav>
     </div>
   )
