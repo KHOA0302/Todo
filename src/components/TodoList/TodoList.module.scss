@@ -1,0 +1,16 @@
+.wrapper {
+  animation-name: slideDown;
+  animation-duration: 0.2s;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -4,23 +4,23 @@ const initState = {
     {
       id: 1,
       title: 'todo 1',
-      completed: false,
+      completed: true,
       createAt: '',
-      type: [],
+      types: ['my-day'],
     },
     {
       id: 2,
       title: 'todo 2',
       completed: false,
       createAt: '',
-      type: [],
+      types: ['important', 'my-day'],
     },
     {
       id: 3,
       title: 'todo 3',
       completed: false,
       createAt: '',
-      type: [],
+      types: ['planned'],
     },
   ],
 }

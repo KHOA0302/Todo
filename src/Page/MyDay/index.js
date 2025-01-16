@@ -1,22 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
   todosCompletedSelector,
   todosNotCompletedSelector,
-  todosSelector,
 } from '~/redux/selector'
 import classNames from 'classnames/bind'
 import styles from './MyDay.module.scss'
-import { CircleIcon, MyDayIcon } from '~/Icons'
+import { ArrowIcon, CircleIcon, MyDayIcon } from '~/Icons'
 import TodoList from '~/components/TodoList'
 import DateTime from '~/components/DateTime'
-import TodoCompleted from '~/components/TodoCompleted'
+import NumberOfTodo from '~/components/NumberOfTodo'
 
 const cx = classNames.bind(styles)
+const type = 'my-day'
 
 function MyDay() {
-  const todosNotCompleted = useSelector(todosNotCompletedSelector)
-  const todosCompleted = useSelector(todosCompletedSelector)
+  const todosNotCompleted = useSelector((state) =>
+    todosNotCompletedSelector(state, type),
+  )
+
+  const todosCompleted = useSelector((state) =>
+    todosCompletedSelector(state, type),
+  )
+
+  const [showCompleted, setShowCompleted] = useState(false)
+
+  const handleShowCompleted = () => {
+    setShowCompleted(!showCompleted)
+  }
 
   return (
     <div className={cx('wrapper')}>
@@ -34,15 +45,27 @@ function MyDay() {
       </div>
 
       <TodoList todoList={todosNotCompleted} />
-      <div className={cx('todo-completed')}>
+      <div
+        className={cx('todo-completed', {
+          ['show']: !showCompleted,
+        })}
+      >
         {!!todosCompleted.length && (
-          <h1>
-            <span>Completed</span>
-            &nbsp;&nbsp;
-            <span>{todosCompleted.length}</span>
-          </h1>
+          <div
+            className={cx('todo-completed_heading', {
+              ['rotate']: showCompleted,
+            })}
+            onClick={handleShowCompleted}
+          >
+            <ArrowIcon />
+            <h1>
+              <span>Completed</span>
+              &nbsp;&nbsp;
+              <NumberOfTodo number={todosCompleted.length} />
+            </h1>
+          </div>
         )}
-        <TodoCompleted todoList={todosCompleted} />
+        {showCompleted && <TodoList todoList={todosCompleted} />}
       </div>
     </div>
   )

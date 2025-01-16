@@ -34,7 +34,7 @@
 
   input {
     flex: 1;
-    padding: 12px 0;
+    padding: 14px 0;
     padding-right: 8px;
     border: none;
     outline: none;
@@ -48,5 +48,43 @@
     path {
       color: var(--primary-color);
     }
+  }
+}
+
+.todo-completed {
+  margin-top: 10px;
+  cursor: pointer;
+  .todo-completed_heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    svg {
+      transform: rotate(0);
+      font-size: 1rem;
+      transition: transform 0.6s;
+    }
+    &.rotate {
+      svg {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  h1 {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+
+    span:first-child {
+      margin-right: 10px;
+    }
+  }
+
+  &.show::after {
+    content: '';
+    display: block;
+    width: 90%;
+    margin: auto;
+    margin-top: 8px;
+    border-bottom: 1px solid #dfdfdf;
   }
 }

@@ -8,6 +8,20 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 0 12px;
+  animation-name: slideDown;
+  animation-duration: 0.2s;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .flex-groupItem {
@@ -62,10 +76,13 @@
 }
 
 .todo-title {
+  font-family: 'Kanit', sans-serif;
   flex: 1;
-  padding: 12px;
+  padding: 14px;
+  font-weight: 300;
   &.active {
-    color: #bbb;
+    color: #626262;
     text-decoration: line-through;
+    font-weight: 200;
   }
 }

@@ -30,7 +30,7 @@
 
 .link {
   display: flex;
-  gap: 12px;
+  justify-content: space-between;
   padding: 12px;
   color: black;
   border-left: 0 solid transparent;
@@ -44,6 +44,11 @@
   &.active {
     background-color: var(--primary-active);
     border-left: 5px solid var(--primary-color);
+  }
+  div {
+    display: flex;
+    gap: 12px;
+    align-items: center;
   }
 }
 

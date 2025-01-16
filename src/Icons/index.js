@@ -4,9 +4,8 @@ import { HiOutlineCalendarDays } from 'react-icons/hi2'
 import { MdOutlineDone } from 'react-icons/md'
 import { LiaCircleSolid } from 'react-icons/lia'
 import { CiStar } from 'react-icons/ci'
-import { CiCircleCheck } from 'react-icons/ci'
 import { IoIosCheckmarkCircle } from 'react-icons/io'
-
+import { BiRightArrow } from 'react-icons/bi'
 export const MyDayIcon = () => {
   return <RiSunLine />
 }
@@ -33,4 +32,8 @@ export const TickIcon = () => {
 
 export const DoneIcon = () => {
   return <IoIosCheckmarkCircle />
+}
+
+export const ArrowIcon = () => {
+  return <BiRightArrow />
 }
