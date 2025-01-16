@@ -1,7 +1,8 @@
-import React from 'react'
+import PageLayout from '~/components/PageLayout'
+import { ImportantIcon } from '~/Icons'
 
 function Important() {
-  return <div>Important</div>
+  return <PageLayout type='important' Icon={ImportantIcon} title='Important' />
 }
 
 export default Important

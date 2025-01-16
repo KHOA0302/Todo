@@ -6,7 +6,7 @@ export const todosCompletedSelector = createSelector(
   todosSelector,
   (state, type) => type,
   (todos, type) => {
-    return todos.filter((todo) => todo.completed)
+    return todos.filter((todo) => todo.completed && todo.types.includes(type))
   },
 )
 
