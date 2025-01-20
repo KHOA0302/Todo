@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { pages } from '~/Page'
@@ -12,14 +12,20 @@ function usePageDetect() {
   const pathname = useLocation().pathname
 
   const todoId = regex.test(pathname) && pathname.slice(-1)
+
   const todo = useSelector((state) => todoSelector(state, todoId))
 
   useEffect(() => {
     pages.some((page) => page.path === pathname) && setPreRoute(pathname)
   }, [pathname])
 
-  const Page = pages.find((page) => page.path === preRoute)
-    ? pages.find((page) => page.path === preRoute).page
+  const pageFounded = useMemo(
+    () => pages.find((page) => page.path === preRoute),
+    [preRoute],
+  )
+
+  const Page = pageFounded
+    ? pageFounded.page
     : todo?.types.includes('my-day')
     ? MyDay
     : Task
