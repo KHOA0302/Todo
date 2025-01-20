@@ -17,8 +17,7 @@ function App() {
       <NavBar />
 
       <Routes>
-        <Route exact path='/' element={<Navigate to='/todos' />} />
-        <Route exact path='/todos' element={<Navigate to='/todos/my-day' />} />
+        <Route exact path='/' element={<Navigate to='/todos/my-day' />} />
         <Route path='/todos'>
           {pages.map((page, index) => {
             const Component = page.page

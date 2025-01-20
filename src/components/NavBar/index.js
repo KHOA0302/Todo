@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './NavBar.module.scss'
 import Search from '../Search'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { ImportantIcon, MyDayIcon, PlannedIcon, TaskIcon } from '~/Icons'
-import { pages } from '~/Page'
 import { useSelector } from 'react-redux'
 import { numberOfTodosSelector } from '~/redux/selector'
 import NumberOfTodo from '../NumberOfTodo'
@@ -85,4 +84,4 @@ function NavBar() {
   )
 }
 
-export default NavBar
+export default memo(NavBar)

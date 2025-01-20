@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
   todosCompletedSelector,
@@ -44,13 +44,13 @@ function PageLayout({ type, Icon, title, today = '' }) {
 
       <div
         className={cx('todo-completed', {
-          ['show']: showCompleted && !!todosCompleted.length,
+          show: showCompleted && !!todosCompleted.length,
         })}
       >
         {!!todosCompleted.length && (
           <div
-            className={cx('todo-completed_heading', {
-              ['rotate']: showCompleted,
+            className={cx('todo-completed-heading', {
+              rotate: showCompleted,
             })}
             onClick={handleShowCompleted}
           >
@@ -68,4 +68,4 @@ function PageLayout({ type, Icon, title, today = '' }) {
   )
 }
 
-export default PageLayout
+export default memo(PageLayout)

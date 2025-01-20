@@ -6,12 +6,14 @@ import MyDay from '~/Page/MyDay'
 import Task from '~/Page/Task'
 import { todoSelector } from '~/redux/selector'
 
-const regex = /\/(\d+)$/
+const IdRegex = /\/(\d+)$/
+
 function usePageDetect() {
   const [preRoute, setPreRoute] = useState('')
+
   const pathname = useLocation().pathname
 
-  const todoId = regex.test(pathname) && pathname.slice(-1)
+  const todoId = IdRegex.test(pathname) && pathname.match(/\/([^/]+)$/)[1]
 
   const todo = useSelector((state) => todoSelector(state, todoId))
 
