@@ -1,10 +1,16 @@
 import React from 'react'
 import classNames from 'classnames/bind'
 import styles from './Todo.module.scss'
-import { CircleIcon, TickIcon, ImportantIcon, DoneIcon } from '~/Icons'
+import {
+  CircleIcon,
+  TickIcon,
+  ImportantIcon,
+  DoneIcon,
+  ImportantActiveIcon,
+} from '~/Icons'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { changeCompleted } from '~/redux/action'
+import { changeCompleted, changeImportantStatus } from '~/redux/action'
 
 const cx = classNames.bind(styles)
 
@@ -15,6 +21,16 @@ function Todo({ todo }) {
 
   const handleComplete = () => {
     dispatch(changeCompleted(todo.id))
+  }
+
+  const isImportant = todo.types.includes('important')
+
+  const handleImportantChange = () => {
+    const payload = {
+      id: todo.id,
+      importantStatus: isImportant,
+    }
+    dispatch(changeImportantStatus(payload))
   }
 
   return (
@@ -39,7 +55,10 @@ function Todo({ todo }) {
         </div>
       </div>
 
-      <ImportantIcon />
+      <div className={cx('important-icon')} onClick={handleImportantChange}>
+        {isImportant && <ImportantActiveIcon />}
+        {!isImportant && <ImportantIcon />}
+      </div>
     </div>
   )
 }

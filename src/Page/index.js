@@ -1,4 +1,3 @@
-import { MdTitle } from 'react-icons/md'
 import Important from './Important'
 import MyDay from './MyDay'
 import Planned from './Planned'

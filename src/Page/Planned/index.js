@@ -1,7 +1,9 @@
 import React from 'react'
 
 function Planned() {
-  return <div>Planned</div>
+  const createdAtString = new Date().toISOString().slice(0, 10)
+
+  return <div>{createdAtString}</div>
 }
 
 export default Planned

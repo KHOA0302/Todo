@@ -1,7 +1,8 @@
-import React from 'react'
+import PageLayout from '~/components/PageLayout'
+import { TaskIcon } from '~/Icons'
 
 function Task() {
-  return <div>Task</div>
+  return <PageLayout type='' Icon={TaskIcon} title='Task' />
 }
 
 export default Task

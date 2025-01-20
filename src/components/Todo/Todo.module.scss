@@ -10,6 +10,9 @@
   padding: 0 12px;
   animation-name: slideDown;
   animation-duration: 0.2s;
+  &:hover {
+    background-color: var(--primary-hover);
+  }
 }
 
 @keyframes slideDown {
@@ -84,5 +87,15 @@
     color: #626262;
     text-decoration: line-through;
     font-weight: 200;
+  }
+}
+
+.important-icon {
+  display: flex;
+  cursor: pointer;
+  svg {
+    path {
+      color: var(--primary-color);
+    }
   }
 }

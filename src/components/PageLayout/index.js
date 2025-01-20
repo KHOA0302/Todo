@@ -6,22 +6,22 @@ import {
 } from '~/redux/selector'
 import classNames from 'classnames/bind'
 import styles from './PageLayout.module.scss'
-import { ArrowIcon, MyDayIcon } from '~/Icons'
+import { ArrowIcon } from '~/Icons'
 import TodoList from '~/components/TodoList'
 import DateTime from '~/components/DateTime'
 import NumberOfTodo from '~/components/NumberOfTodo'
 import AddTodoInput from '~/components/AddTodoInput'
 
 const cx = classNames.bind(styles)
-function PageLayout({ type, Icon, title }) {
+function PageLayout({ type, Icon, title, today = '' }) {
   const [showCompleted, setShowCompleted] = useState(false)
 
   const todosNotCompleted = useSelector((state) =>
-    todosNotCompletedSelector(state, type),
+    todosNotCompletedSelector(state, { type, today }),
   )
 
   const todosCompleted = useSelector((state) =>
-    todosCompletedSelector(state, type),
+    todosCompletedSelector(state, { type, today }),
   )
 
   const handleShowCompleted = () => {

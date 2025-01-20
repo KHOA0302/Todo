@@ -4,3 +4,10 @@ export const changeCompleted = (id) => {
     type: 'changeCompleted',
   }
 }
+
+export const changeImportantStatus = (data) => {
+  return {
+    payload: data,
+    type: 'changeImportantStatus',
+  }
+}

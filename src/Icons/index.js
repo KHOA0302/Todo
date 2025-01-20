@@ -6,6 +6,8 @@ import { LiaCircleSolid } from 'react-icons/lia'
 import { CiStar } from 'react-icons/ci'
 import { IoIosCheckmarkCircle } from 'react-icons/io'
 import { BiRightArrow } from 'react-icons/bi'
+import { FaStar } from 'react-icons/fa6'
+import { TiStarFullOutline } from 'react-icons/ti'
 export const MyDayIcon = () => {
   return <RiSunLine />
 }
@@ -36,4 +38,8 @@ export const DoneIcon = () => {
 
 export const ArrowIcon = () => {
   return <BiRightArrow />
+}
+
+export const ImportantActiveIcon = () => {
+  return <TiStarFullOutline />
 }

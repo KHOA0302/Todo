@@ -51,6 +51,11 @@ function NavBar() {
             <ImportantIcon />
             <span>Important</span>
           </div>
+          <NumberOfTodo
+            number={useSelector((state) =>
+              numberOfTodosSelector(state, 'important'),
+            )}
+          />
         </Link>
         <Link
           to='/todos/planned'
@@ -71,6 +76,9 @@ function NavBar() {
             <TaskIcon />
             <span>Task</span>
           </div>
+          <NumberOfTodo
+            number={useSelector((state) => numberOfTodosSelector(state, ''))}
+          />
         </Link>
       </nav>
     </div>
