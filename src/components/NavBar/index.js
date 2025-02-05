@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import styles from './NavBar.module.scss'
@@ -8,15 +8,13 @@ import { ImportantIcon, MyDayIcon, PlannedIcon, TaskIcon } from '~/Icons'
 import { useSelector } from 'react-redux'
 import { numberOfTodosSelector } from '~/redux/selector'
 import NumberOfTodo from '../NumberOfTodo'
+import usePageDetect from '~/Hook/usePageDetect'
 
 const cx = classNames.bind(styles)
 
 function NavBar() {
-  const [pathname, setPathname] = useState('/todos/my-day')
-
-  const handleClick = (pathname) => {
-    setPathname(pathname)
-  }
+  const page = usePageDetect()
+  const activePath = page ? page().props.type : ''
 
   return (
     <div className={cx('wrapper')}>
@@ -28,8 +26,7 @@ function NavBar() {
       <nav className={cx('nav-bar')}>
         <Link
           to='/todos/my-day'
-          onClick={() => handleClick('/todos/my-day')}
-          className={cx('link', { active: pathname === '/todos/my-day' })}
+          className={cx('link', { active: activePath === 'my-day' })}
         >
           <div>
             <MyDayIcon />
@@ -43,8 +40,7 @@ function NavBar() {
         </Link>
         <Link
           to='/todos/important'
-          onClick={() => handleClick('/todos/important')}
-          className={cx('link', { active: pathname === '/todos/important' })}
+          className={cx('link', { active: activePath === 'important' })}
         >
           <div>
             <ImportantIcon />
@@ -58,8 +54,7 @@ function NavBar() {
         </Link>
         <Link
           to='/todos/planned'
-          onClick={() => handleClick('/todos/planned')}
-          className={cx('link', { active: pathname === '/todos/planned' })}
+          className={cx('link', { active: activePath === 'planned' })}
         >
           <div>
             <PlannedIcon />
@@ -68,15 +63,16 @@ function NavBar() {
         </Link>
         <Link
           to='/todos/task'
-          onClick={() => handleClick('/todos/task')}
-          className={cx('link', { active: pathname === '/todos/task' })}
+          className={cx('link', { active: activePath === 'task' })}
         >
           <div>
             <TaskIcon />
             <span>Task</span>
           </div>
           <NumberOfTodo
-            number={useSelector((state) => numberOfTodosSelector(state, ''))}
+            number={useSelector((state) =>
+              numberOfTodosSelector(state, 'task'),
+            )}
           />
         </Link>
       </nav>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { pages } from '~/Page'
@@ -26,13 +26,8 @@ function usePageDetect() {
     [preRoute],
   )
 
-  const Page = pageFounded
-    ? pageFounded.page
-    : todo?.types.includes('my-day')
-    ? MyDay
-    : Task
-
-  return Page
+  if (pageFounded) return pageFounded?.page
+  else if (todo) return todo.types.includes('my-day') ? MyDay : Task
 }
 
 export default usePageDetect

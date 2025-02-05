@@ -7,7 +7,6 @@ export const todosCompletedSelector = createSelector(
   (state, props) => props.type,
   (state, props) => props.today,
   (todos, type, today) => {
-    if (!type) return todos.filter((todo) => todo.completed)
     return todos.filter((todo) => todo.completed && todo.types.includes(type))
   },
 )
@@ -17,7 +16,6 @@ export const todosNotCompletedSelector = createSelector(
   (state, props) => props.type,
   (state, props) => props.today,
   (todos, type, today) => {
-    if (!type) return todos.filter((todo) => !todo.completed)
     return todos.filter((todo) => !todo.completed && todo.types.includes(type))
   },
 )

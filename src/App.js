@@ -6,11 +6,12 @@ import Layout from './Layout'
 import TodoSetting from './Page/TodoSetting'
 import { pages } from './Page'
 import usePageDetect from './Hook/usePageDetect'
+import { Fragment } from 'react'
 
 const cx = classNames.bind(styles)
 
 function App() {
-  const Page = usePageDetect()
+  const Page = usePageDetect() || Fragment
 
   return (
     <div className={cx('wrapper', 'wide')}>
