@@ -1,0 +1,69 @@
+.wrapper {
+  min-width: 20%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  padding: 24px;
+  & .flex-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.todo-settings {
+}
+
+.todo-setting-option {
+  margin-top: 10px;
+  .todo-setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 12px;
+    margin-bottom: 8px;
+    background-color: white;
+    span {
+      font-weight: 300;
+      color: var(--primary-text-light);
+    }
+
+    svg {
+      font-size: 1.2rem;
+      path {
+        color: var(--primary-text-light);
+      }
+    }
+
+    & .flex-group {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      align-items: center;
+    }
+  }
+}
+
+.todo-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  svg {
+    font-size: 1.2rem;
+  }
+}
+
+.todo-created-date {
+  text-align: center;
+  font-size: 0.6rem;
+}

@@ -2,16 +2,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid rgb(219, 219, 219);
+  padding: 0 12px;
   margin-bottom: 8px;
+  background-color: white;
+  border: 1px solid rgb(219, 219, 219);
   border-radius: 4px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  padding: 0 12px;
-  animation-name: slideDown;
-  animation-duration: 0.2s;
+
   &:hover {
     background-color: var(--primary-hover);
+  }
+  gap: 8px;
+
+  &.active-animation {
+    animation-name: slideDown;
+    animation-duration: 0.2s;
   }
 }
 
@@ -37,6 +43,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  cursor: pointer;
   svg:first-child {
     font-size: 1.4rem;
     path {
@@ -79,14 +86,40 @@
 }
 
 .todo-title {
-  font-family: 'Kanit', sans-serif;
+  display: flex;
   flex: 1;
-  padding: 14px;
+  padding: 14px 0;
   font-weight: 300;
+  font-family: 'Kanit', sans-serif;
+  cursor: pointer;
+
   &.active {
     color: #626262;
     text-decoration: line-through;
     font-weight: 200;
+  }
+
+  .todo-input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    overflow: hidden;
+    resize: none;
+  }
+
+  .title-content {
+    font-weight: 400;
+  }
+
+  .todo-types {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    li {
+      color: var(--primary-text-light);
+      font-size: 0.8rem;
+    }
   }
 }
 

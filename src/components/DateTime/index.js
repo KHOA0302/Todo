@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import classNames from 'classnames/bind'
 import style from './DateTime.module.scss'
+import Dates from './Dates'
+import Time from './Time'
 
 const cx = classNames.bind(style)
 function DateTime() {
@@ -13,20 +15,12 @@ function DateTime() {
     return () => clearInterval(id)
   }, [])
 
-  const clock = time.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  })
-  const day = time.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  })
+  const style = { fontSize: '0.8rem', color: 'rgb(100, 100, 100)' }
+
   return (
     <div className={cx('time')}>
-      <span className={cx('day')}>{day}</span>
-      <span className={cx('clock')}>{clock}</span>
+      <Dates time={time} style={style} />
+      <Time time={time} style={style} />
     </div>
   )
 }

@@ -7,6 +7,10 @@ import { CiStar } from 'react-icons/ci'
 import { IoIosCheckmarkCircle } from 'react-icons/io'
 import { BiRightArrow } from 'react-icons/bi'
 import { TiStarFullOutline } from 'react-icons/ti'
+import { PiTrashSimple } from 'react-icons/pi'
+import { RxExit } from 'react-icons/rx'
+import { BsX } from 'react-icons/bs'
+
 export const MyDayIcon = () => {
   return <RiSunLine />
 }
@@ -41,4 +45,16 @@ export const ArrowIcon = () => {
 
 export const ImportantActiveIcon = () => {
   return <TiStarFullOutline />
+}
+
+export const RemoveIcon = () => {
+  return <PiTrashSimple />
+}
+
+export const ExitIcon = () => {
+  return <RxExit />
+}
+
+export const CancelIcon = () => {
+  return <BsX />
 }

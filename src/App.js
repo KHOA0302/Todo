@@ -2,8 +2,8 @@ import classNames from 'classnames/bind'
 import styles from './App.module.scss'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
-import Layout from './Layout'
-import TodoSetting from './Page/TodoSetting'
+
+import TodoDetail from './Page/TodoDetail'
 import { pages } from './Page'
 import usePageDetect from './Hook/usePageDetect'
 import { Fragment } from 'react'
@@ -24,24 +24,16 @@ function App() {
             const Component = page.page
 
             return (
-              <Route
-                key={index}
-                path={page.path}
-                element={
-                  <Layout>
-                    <Component />
-                  </Layout>
-                }
-              />
+              <Route key={index} path={page.path} element={<Component />} />
             )
           })}
           <Route
             path='id/:id'
             element={
-              <Layout>
+              <>
                 <Page />
-                <TodoSetting />
-              </Layout>
+                <TodoDetail />
+              </>
             }
           />
         </Route>

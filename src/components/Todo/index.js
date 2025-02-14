@@ -1,4 +1,4 @@
-import React from 'react'
+import { memo, useEffect, useMemo, useState } from 'react'
 import classNames from 'classnames/bind'
 import styles from './Todo.module.scss'
 import {
@@ -11,12 +11,15 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { changeCompleted, changeImportantStatus } from '~/redux/action'
+import TextareaAutosize from 'react-textarea-autosize'
+import usePageDetect from '~/Hook/usePageDetect'
 
 const cx = classNames.bind(styles)
 
-function Todo({ todo }) {
-  const navigator = useNavigate()
+function Todo({ todo, activatedSetting = false, currentType }) {
+  const [todoInput, setTodoInput] = useState(todo.title)
 
+  const navigator = useNavigate()
   const dispatch = useDispatch()
 
   const handleComplete = () => {
@@ -33,8 +36,32 @@ function Todo({ todo }) {
     dispatch(changeImportantStatus(payload))
   }
 
+  const handleChangeTodoInput = (e) => {
+    setTodoInput(e.target.value)
+  }
+
+  const handleRoute = (e) => {
+    if (!activatedSetting) navigator(`/todos/id/${todo.id}`)
+  }
+
+  useEffect(() => {}, [todoInput])
+
+  const page = usePageDetect()
+  const activePath = page ? page().props.type : ''
+
+  const todoTypes = useMemo(() => {
+    return todo.types
+      .filter((type) => type !== 'important')
+      .filter((type) => type !== activePath)
+      .map((type) => <li>{type}</li>)
+  }, [activePath])
+
   return (
-    <div className={cx('wrapper')}>
+    <div
+      className={cx('wrapper', {
+        ['active-animation']: !activatedSetting,
+      })}
+    >
       <div className={cx('flex-groupItem')}>
         <div
           className={cx('todo-complete', { ['active']: todo.completed })}
@@ -46,12 +73,23 @@ function Todo({ todo }) {
         </div>
 
         <div
-          className={cx('todo-title', { ['active']: todo.completed })}
-          onClick={() => {
-            navigator(`/todos/id/${todo.id}`)
-          }}
+          className={cx('todo-title', {
+            ['active']: todo.completed,
+          })}
+          onClick={handleRoute}
         >
-          {todo.title}
+          {activatedSetting ? (
+            <TextareaAutosize
+              className={cx('todo-input')}
+              value={todoInput}
+              onChange={(e) => handleChangeTodoInput(e)}
+            />
+          ) : (
+            <div>
+              <p className={cx('title-content')}>{todoInput}</p>
+              <ul className={cx('todo-types')}>{todoTypes}</ul>
+            </div>
+          )}
         </div>
       </div>
 
@@ -63,4 +101,4 @@ function Todo({ todo }) {
   )
 }
 
-export default Todo
+export default memo(Todo)
