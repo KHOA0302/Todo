@@ -6,15 +6,13 @@ import Search from '../Search'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { ImportantIcon, MyDayIcon, PlannedIcon, TaskIcon } from '~/Icons'
 import { useSelector } from 'react-redux'
-import { numberOfTodosSelector } from '~/redux/selector'
+import { currentPageSelector, numberOfTodosSelector } from '~/redux/selector'
 import NumberOfTodo from '../NumberOfTodo'
-import usePageDetect from '~/Hook/usePageDetect'
 
 const cx = classNames.bind(styles)
 
 function NavBar() {
-  const page = usePageDetect()
-  const activePath = page ? page().props.type : ''
+  const activePath = useSelector(currentPageSelector)
 
   return (
     <div className={cx('wrapper')}>

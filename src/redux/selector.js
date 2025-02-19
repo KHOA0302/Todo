@@ -1,6 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit'
 
-export const todosSelector = (state) => state.todos
+//first dot is for slice reducer second dot is for todos list
+export const todosSelector = (state) => state.todos.todos
+
+export const currentPageSelector = (state) => state.currentPage.page
 
 export const todosCompletedSelector = createSelector(
   todosSelector,

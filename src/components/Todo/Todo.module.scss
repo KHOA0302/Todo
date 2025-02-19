@@ -1,3 +1,15 @@
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .wrapper {
   display: flex;
   align-items: center;
@@ -18,18 +30,6 @@
   &.active-animation {
     animation-name: slideDown;
     animation-duration: 0.2s;
-  }
-}
-
-@keyframes slideDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-20%);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -93,7 +93,7 @@
   font-family: 'Kanit', sans-serif;
   cursor: pointer;
 
-  &.active {
+  &.active div p {
     color: #626262;
     text-decoration: line-through;
     font-weight: 200;
@@ -114,11 +114,44 @@
 
   .todo-types {
     display: flex;
-    gap: 4px;
+    gap: 8px;
     align-items: center;
     li {
-      color: var(--primary-text-light);
-      font-size: 0.8rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-right: 8px;
+      gap: 2px;
+      &::after {
+        content: '';
+        position: absolute;
+        width: 2px;
+        height: 60%;
+        background-color: var(--primary-text-light);
+        right: 0;
+        margin-left: 2px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      span {
+        color: var(--primary-text-light);
+        font-size: 0.8rem;
+        line-height: 0%;
+      }
+
+      svg {
+        font-size: 0.8rem;
+        path {
+          color: var(--primary-text-light);
+        }
+      }
+    }
+
+    li:last-child {
+      &::after {
+        display: none;
+      }
     }
   }
 }

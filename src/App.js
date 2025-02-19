@@ -2,16 +2,37 @@ import classNames from 'classnames/bind'
 import styles from './App.module.scss'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
-
 import TodoDetail from './Page/TodoDetail'
 import { pages } from './Page'
 import usePageDetect from './Hook/usePageDetect'
-import { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setCurrentPage } from './redux/features/currentPage/currentPageSlice'
 
 const cx = classNames.bind(styles)
 
 function App() {
+  const dispatch = useDispatch()
   const Page = usePageDetect() || Fragment
+
+  const pageType = Page !== React.Fragment && Page().props.type // pageType can be false
+
+  useEffect(() => {
+    dispatch(setCurrentPage(pageType))
+  }, [pageType])
+
+  // useEffect(() => {
+  //   const fetchTodos = async () => {
+  //     try {
+  //       const response = await todoApi.getAllTodos()
+  //       console.log(response.data)
+  //     } catch (error) {
+  //     } finally {
+  //     }
+  //   }
+
+  //   fetchTodos()
+  // }, [])
 
   return (
     <div className={cx('wrapper', 'wide')}>

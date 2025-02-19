@@ -7,16 +7,28 @@ import {
   ImportantIcon,
   DoneIcon,
   ImportantActiveIcon,
+  MyDayIcon,
+  TaskIcon,
+  PlannedIcon,
 } from '~/Icons'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { changeCompleted, changeImportantStatus } from '~/redux/action'
+import { useDispatch, useSelector } from 'react-redux'
 import TextareaAutosize from 'react-textarea-autosize'
-import usePageDetect from '~/Hook/usePageDetect'
+import { currentPageSelector } from '~/redux/selector'
+import {
+  changeCompleted,
+  changeImportantStatus,
+} from '~/redux/features/todos/todosSlice'
 
 const cx = classNames.bind(styles)
 
-function Todo({ todo, activatedSetting = false, currentType }) {
+const iconsType = [
+  { name: 'my-day', icon: MyDayIcon },
+  { name: 'task', icon: TaskIcon },
+  { name: 'planned', icon: PlannedIcon },
+]
+
+function Todo({ todo, activatedSetting = false }) {
   const [todoInput, setTodoInput] = useState(todo.title)
 
   const navigator = useNavigate()
@@ -46,14 +58,23 @@ function Todo({ todo, activatedSetting = false, currentType }) {
 
   useEffect(() => {}, [todoInput])
 
-  const page = usePageDetect()
-  const activePath = page ? page().props.type : ''
+  const activePath = useSelector(currentPageSelector)
 
   const todoTypes = useMemo(() => {
     return todo.types
       .filter((type) => type !== 'important')
       .filter((type) => type !== activePath)
-      .map((type) => <li>{type}</li>)
+      .map((type) => {
+        const Icon = iconsType.filter((iconType) => iconType.name === type)[0]
+          .icon
+
+        return (
+          <li>
+            <Icon />
+            <span>{type}</span>
+          </li>
+        )
+      })
   }, [activePath])
 
   return (

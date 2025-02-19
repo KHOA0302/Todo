@@ -14,6 +14,8 @@ function TodoDetail() {
   const todo = useSelector((state) => todoSelector(state, id))
   const style = { fontSize: '0.6rem', color: 'rgb(100, 100, 100)' }
 
+  const isMyDay = todo.types.includes('my-day')
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
@@ -23,12 +25,12 @@ function TodoDetail() {
           </div>
           <div className={cx('todo-settings')}>
             <ul className={cx('todo-setting-option')}>
-              <li className={cx('todo-setting-item')}>
+              <li className={cx('todo-setting-item', { ['active']: isMyDay })}>
                 <div className={cx('flex-group')}>
                   <MyDayIcon />
                   <span>Add to My Day</span>
                 </div>
-                <CancelIcon />
+                {isMyDay && <CancelIcon />}
               </li>
               <li className={cx('todo-setting-item')}>Add due day</li>
               <li className={cx('todo-setting-item')}>Pick category</li>

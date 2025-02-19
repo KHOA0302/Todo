@@ -24,30 +24,43 @@
 
 .todo-setting-option {
   margin-top: 10px;
-  .todo-setting-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 12px;
-    margin-bottom: 8px;
-    background-color: white;
-    span {
-      font-weight: 300;
+}
+
+.todo-setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 12px;
+  margin-bottom: 8px;
+  background-color: white;
+  span {
+    font-weight: 300;
+    color: var(--primary-text-light);
+  }
+
+  svg {
+    font-size: 1.2rem;
+    path {
       color: var(--primary-text-light);
     }
+  }
 
-    svg {
-      font-size: 1.2rem;
-      path {
-        color: var(--primary-text-light);
-      }
+  & .flex-group {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
+
+  //when todo type active
+  &.active {
+    span {
+      color: var(--primary-color);
     }
-
-    & .flex-group {
-      display: flex;
-      flex-direction: row;
-      gap: 8px;
-      align-items: center;
+    svg {
+      path {
+        color: var(--primary-color);
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
-import { memo, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { memo, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   todosCompletedSelector,
   todosNotCompletedSelector,
@@ -11,10 +11,16 @@ import TodoList from '~/components/TodoList'
 import DateTime from '~/components/DateTime'
 import NumberOfTodo from '~/components/NumberOfTodo'
 import AddTodoInput from '~/components/AddTodoInput'
+import { fetchTodos } from '~/redux/features/todos/todosActionThunk'
 
 const cx = classNames.bind(styles)
 function PageLayout({ type, Icon, title, today = '' }) {
   const [showCompleted, setShowCompleted] = useState(false)
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchTodos())
+  }, [])
 
   const todosNotCompleted = useSelector((state) =>
     todosNotCompletedSelector(state, { type, today }),
