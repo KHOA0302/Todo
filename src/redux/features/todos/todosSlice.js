@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { createTodo, fetchTodos } from './todosActionThunk'
+import {
+  createTodo,
+  fetchTodos,
+  changeImportantStatus as a,
+  changeCompletedStatus,
+} from './todosActionThunk'
 
 const initialState = {
   todo: '',
@@ -59,6 +64,38 @@ const todosSlice = createSlice({
       state.todos.push(action.payload)
     })
     builder.addCase(createTodo.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    })
+
+    //todos/changeImportantStatus
+    builder.addCase(a.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(a.fulfilled, (state, action) => {
+      state.loading = false
+      const todoIsEdit = action.payload
+      state.todos.find((todo) => todo.id === todoIsEdit.id).types =
+        todoIsEdit.types
+    })
+    builder.addCase(a.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    })
+
+    //todos/changeCompletedStatus
+    builder.addCase(changeCompletedStatus.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(changeCompletedStatus.fulfilled, (state, action) => {
+      state.loading = false
+      const todoIsEdit = action.payload
+      state.todos.find((todo) => todo.id === todoIsEdit.id).completed =
+        todoIsEdit.completed
+    })
+    builder.addCase(changeCompletedStatus.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
     })

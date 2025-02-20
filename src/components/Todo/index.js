@@ -16,9 +16,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import TextareaAutosize from 'react-textarea-autosize'
 import { currentPageSelector } from '~/redux/selector'
 import {
-  changeCompleted,
+  changeCompletedStatus,
   changeImportantStatus,
-} from '~/redux/features/todos/todosSlice'
+} from '~/redux/features/todos/todosActionThunk'
 
 const cx = classNames.bind(styles)
 
@@ -35,17 +35,23 @@ function Todo({ todo, activatedSetting = false }) {
   const dispatch = useDispatch()
 
   const handleComplete = () => {
-    dispatch(changeCompleted(todo.id))
+    const payload = { ...todo, completed: !todo.completed }
+    dispatch(changeCompletedStatus(payload))
   }
 
   const isImportant = todo.types.includes('important')
 
   const handleImportantChange = () => {
-    const payload = {
-      id: todo.id,
-      importantStatus: isImportant,
+    const todoTypes = isImportant
+      ? todo.types.filter((type) => type !== 'important')
+      : [...todo.types, 'important']
+
+    const todoEdited = {
+      ...todo,
+      types: todoTypes,
     }
-    dispatch(changeImportantStatus(payload))
+
+    dispatch(changeImportantStatus(todoEdited))
   }
 
   const handleChangeTodoInput = (e) => {
