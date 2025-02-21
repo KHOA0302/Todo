@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { useEffect } from 'react'
 import todoApi from '~/api/todoApi'
 
 export const fetchTodos = createAsyncThunk(
