@@ -27,6 +27,7 @@ function AddTodoInput() {
     const fullType =
       currentPageType === 'task' ? [currentPageType] : ['task', currentPageType]
     const createdAt = new Date().toISOString().slice(0, 10)
+
     const todo = {
       id: uuidv4(),
       title: todoInput,
@@ -35,6 +36,7 @@ function AddTodoInput() {
       types: isImportant ? ['important', ...fullType] : [...fullType],
     }
     if (e.key === 'Enter') {
+      console.log(createdAt)
       dispatch(createTodo(todo))
       setTodoInput('')
       setIsImportant(false)
@@ -52,10 +54,12 @@ function AddTodoInput() {
         onKeyDown={handleSubmit}
       />
 
-      <div onClick={() => setIsImportant(!isImportant)}>
-        {isInputEmpty && !isImportant && <ImportantIcon />}
-        {isInputEmpty && isImportant && <ImportantActiveIcon />}
-      </div>
+      {currentPageType !== 'important' && (
+        <div onClick={() => setIsImportant(!isImportant)}>
+          {isInputEmpty && !isImportant && <ImportantIcon />}
+          {isInputEmpty && isImportant && <ImportantActiveIcon />}
+        </div>
+      )}
     </div>
   )
 }

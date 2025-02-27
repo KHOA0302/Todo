@@ -48,3 +48,27 @@ export const changeCompletedStatus = createAsyncThunk(
     }
   },
 )
+
+export const changeMyDayType = createAsyncThunk(
+  'todos/changeMyDayType',
+  async (todoEdited, thunkAPI) => {
+    try {
+      const response = await todoApi.updateTodo(todoEdited.id, todoEdited)
+      return response.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data)
+    }
+  },
+)
+
+export const deleteTodo = createAsyncThunk(
+  'todos/deleteTodo',
+  async (todoId, thunkAPI) => {
+    try {
+      await todoApi.deleteTodo(todoId)
+      return todoId
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data)
+    }
+  },
+)

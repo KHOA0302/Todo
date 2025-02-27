@@ -33,6 +33,7 @@
   padding: 14px 12px;
   margin-bottom: 8px;
   background-color: white;
+  cursor: pointer;
   span {
     font-weight: 300;
     color: var(--primary-text-light);
@@ -63,6 +64,10 @@
       }
     }
   }
+
+  &:hover {
+    background-color: var(--primary-background);
+  }
 }
 
 .todo-control {
@@ -70,6 +75,19 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
+
+  .todo-remove-btn {
+    cursor: pointer;
+    &:hover path {
+      color: red;
+    }
+  }
+  .todo-exit-btn {
+    cursor: pointer;
+    &:hover path {
+      color: var(--primary-color);
+    }
+  }
 
   svg {
     font-size: 1.2rem;

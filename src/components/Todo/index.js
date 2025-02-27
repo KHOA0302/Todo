@@ -81,7 +81,7 @@ function Todo({ todo, activatedSetting = false }) {
           </li>
         )
       })
-  }, [activePath])
+  }, [activePath, todo.types])
 
   return (
     <div

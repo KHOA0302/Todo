@@ -2,8 +2,10 @@ import { createSlice } from '@reduxjs/toolkit'
 import {
   createTodo,
   fetchTodos,
-  changeImportantStatus as a,
+  changeImportantStatus,
   changeCompletedStatus,
+  deleteTodo,
+  changeMyDayType,
 } from './todosActionThunk'
 
 const initialState = {
@@ -69,17 +71,17 @@ const todosSlice = createSlice({
     })
 
     //todos/changeImportantStatus
-    builder.addCase(a.pending, (state) => {
+    builder.addCase(changeImportantStatus.pending, (state) => {
       state.loading = true
       state.error = null
     })
-    builder.addCase(a.fulfilled, (state, action) => {
+    builder.addCase(changeImportantStatus.fulfilled, (state, action) => {
       state.loading = false
       const todoIsEdit = action.payload
       state.todos.find((todo) => todo.id === todoIsEdit.id).types =
         todoIsEdit.types
     })
-    builder.addCase(a.rejected, (state, action) => {
+    builder.addCase(changeImportantStatus.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
     })
@@ -99,9 +101,35 @@ const todosSlice = createSlice({
       state.loading = false
       state.error = action.payload
     })
+
+    //todos/changeMyDayType
+    builder.addCase(changeMyDayType.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(changeMyDayType.fulfilled, (state, action) => {
+      state.loading = false
+      const todoIsEdit = action.payload
+      state.todos.find((todo) => todo.id === todoIsEdit.id).types =
+        todoIsEdit.types
+    })
+    builder.addCase(changeMyDayType.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    })
+
+    //todos/deleteTodo
+    builder.addCase(deleteTodo.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(deleteTodo.fulfilled, (state, action) => {
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload)
+    })
+    builder.addCase(deleteTodo.rejected, (state, action) => {
+      state.error = action.payload
+    })
   },
 })
-
-export const { changeCompleted, changeImportantStatus } = todosSlice.actions
 
 export default todosSlice
